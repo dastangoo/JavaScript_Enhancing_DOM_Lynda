@@ -20,6 +20,7 @@
       myOverlay.style.top = window.pageYOffset + 'px';
       myOverlay.style.left = window.pageXOffset + 'px';
 
+      //Create image element
       var imageSrc = e.target.src;
       var largeImage = document.createElement('img');
       largeImage.id = 'largeImage';
@@ -27,8 +28,25 @@
       // largeImage = imageSrc.substr(0, imageSrc.length-7) + 'jpg';
       largeImage.style.display = 'block';
       largeImage.style.position = 'absolute';
-      myOverlay.appendChild(largeImage);
 
+      //waint until the image has loaded
+      largeImage.addEventListener('load', function() {
+        //Resize if taller
+        if (this.height > window.innerHeight) {
+          this.ratio = window.innerHeight / this.height;
+          this.height *= this.ratio;
+          this.width *= this.ratio;
+        }
+        //Resize if wider
+        if (this.width > window.innerWidth) {
+          this.ratio = window.innerWidth / this.width;
+          this.height *= this.ratio;
+          this.width *= this.ratio;
+        }
+
+        myOverlay.appendChild(largeImage);
+
+      }); //image has loaded
     }
   }, false); //image is clicked
 })(); //self executing function
