@@ -53,6 +53,13 @@
           myOverlay.parentNode.removeChild(myOverlay);
         }
       }, false);
+
+      window.addEventListener('scroll', function() {
+        if (myOverlay) {
+          myOverlay.style.top = window.pageYOffset + 'px';
+          myOverlay.style.left = window.pageXOffset + 'px';
+        }
+      }, false);
     } // target is an image
   }, false); //image is clicked
   function  centerImage(theImage){
