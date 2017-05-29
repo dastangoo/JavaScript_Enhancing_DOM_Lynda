@@ -44,9 +44,19 @@
           this.width *= this.ratio;
         }
 
+        centerImage(this);
         myOverlay.appendChild(largeImage);
 
       }); //image has loaded
     }
   }, false); //image is clicked
+  function  centerImage(theImage){
+    var myDifX = (window.innerWidth - theImage.width)/2;
+    var myDifY = (window.innerHeight - theImage.height)/2;
+
+    theImage.style.top = myDifX + 'px';
+    theImage.style.left = myDifY + 'px';
+
+    return theImage;
+  }
 })(); //self executing function
