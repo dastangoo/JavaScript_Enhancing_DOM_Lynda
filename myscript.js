@@ -50,6 +50,8 @@
       }); //image has loaded
       largeImage.addEventListener('click', function() {
         if (myOverlay) {
+          window.removeEventListener('resize', window, false);
+          window.removeEventListener('scroll', window, false);
           myOverlay.parentNode.removeChild(myOverlay);
         }
       }, false);
@@ -58,6 +60,17 @@
         if (myOverlay) {
           myOverlay.style.top = window.pageYOffset + 'px';
           myOverlay.style.left = window.pageXOffset + 'px';
+        }
+      }, false);
+
+      window.addEventListener('resize', function() {
+        if (myOverlay) {
+          myOverlay.style.width = window.innerWidth + 'px';
+          myOverlay.style.height = window.innerHeight + 'px';
+          myOverlay.style.top = window.pageYOffset + 'px';
+          myOverlay.style.left = window.pageXOffset + 'px';
+
+          centerImage(largeImage);
         }
       }, false);
     } // target is an image
