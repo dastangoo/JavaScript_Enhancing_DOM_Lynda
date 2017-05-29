@@ -48,7 +48,12 @@
         myOverlay.appendChild(largeImage);
 
       }); //image has loaded
-    }
+      largeImage.addEventListener('click', function() {
+        if (myOverlay) {
+          myOverlay.parentNode.removeChild(myOverlay);
+        }
+      }, false);
+    } // target is an image
   }, false); //image is clicked
   function  centerImage(theImage){
     var myDifX = (window.innerWidth - theImage.width)/2;
